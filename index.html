@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- <base href="https://mandriva.design%20#%20Le%20portfolio%20doit%20%C3%AAtre%20responsive%20s'adaptant%20%C3%A0%20tout%20type%20d'appareil.%20La%20barre%20de%20navigation%20soit%20responsive%20s'adaptant%20%C3%A0%20tout%20type%20d'appareil.%20#%20personnalise%20la%20section%20comp%C3%A9tences.%20R%C3%A9duit%20les%20nombres%20de%20comp%C3%A9tences%20#%20ajoute%20une%20image%20de%20moi%20avec%20de%20bordure%20raduis"> -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chérubin "Mandriva" - Portfolio</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family: 'Roboto', sans-serif;
+                line-height: 1.6;
+                color: #333;
+                background-color: #f4f4f4;
+            }
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            header {
+                background-color: #1a237e;
+                color: #fff;
+                padding: 1rem 0;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+            }
+            .header-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .logo {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+            .logo span {
+                color: #64ffda;
+            }
+            nav ul {
+                list-style: none;
+                display: flex;
+            }
+            nav ul li {
+                margin-left: 1.5rem;
+            }
+            nav ul li a {
+                color: #fff;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            nav ul li a:hover {
+                color: #64ffda;
+            }
+            .hamburger {
+                display: none;
+                cursor: pointer;
+            }
+            .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                transition: all 0.3s ease-in-out;
+                background-color: #fff;
+            }
+            @media (max-width: 768px) {
+                .hamburger {
+                    display: block;
+                }
+                .hamburger.active .bar:nth-child(2) {
+                    opacity: 0;
+                }
+                .hamburger.active .bar:nth-child(1) {
+                    transform: translateY(8px) rotate(45deg);
+                }
+                .hamburger.active .bar:nth-child(3) {
+                    transform: translateY(-8px) rotate(-45deg);
+                }
+                nav ul {
+                    position: fixed;
+                    left: -100%;
+                    top: 70px;
+                    gap: 0;
+                    flex-direction: column;
+                    background-color: #1a237e;
+                    width: 100%;
+                    text-align: center;
+                    transition: 0.3s;
+                }
+                nav ul.active {
+                    left: 0;
+                }
+                nav ul li {
+                    margin: 16px 0;
+                }
+            }
+            .hero {
+                background: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding-top: 80px;
+            }
+            .hero-content {
+                background-color: rgba(26, 35, 126, 0.8);
+                padding: 2rem;
+                border-radius: 10px;
+                color: #fff;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            section {
+                padding: 4rem 0;
+            }
+            h2 {
+                text-align: center;
+                color: #1a237e;
+                margin-bottom: 2rem;
+            }
+            .about-content {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+            }
+            .profile-image {
+                flex: 1;
+                text-align: center;
+            }
+            .profile-image img {
+                width: 250px;
+                height: 250px;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 5px solid #1a237e;
+            }
+            .about-text {
+                flex: 2;
+            }
+            .projects {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+            .project-card {
+                background-color: #fff;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+            .project-card:hover {
+                transform: translateY(-5px);
+            }
+            .project-card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+            .project-card .content {
+                padding: 1.5rem;
+            }
+            .project-card h3 {
+                color: #1a237e;
+                margin-bottom: 0.5rem;
+            }
+            .skills {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+            .skill {
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 1.5rem;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+            .skill:hover {
+                transform: translateY(-5px);
+            }
+            .skill-icon {
+                font-size: 3rem;
+                color: #1a237e;
+                margin-bottom: 1rem;
+            }
+            .skill h3 {
+                color: #1a237e;
+                margin-bottom: 0.5rem;
+            }
+            footer {
+                background-color: #1a237e;
+                color: #fff;
+                text-align: center;
+                padding: 2rem 0;
+            }
+            .social-links {
+                margin-top: 1rem;
+            }
+            .social-links a {
+                color: #fff;
+                font-size: 1.5rem;
+                margin: 0 10px;
+                transition: color 0.3s ease;
+            }
+            .social-links a:hover {
+                color: #64ffda;
+            }
+            @media (max-width: 768px) {
+                .hero h1 {
+                    font-size: 2rem;
+                }
+                .hero p {
+                    font-size: 1rem;
+                }
+                .about-content {
+                    flex-direction: column;
+                }
+                .profile-image, .about-text {
+                    flex: 1;
+                }
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Mandriv<span>A</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Mandriva</h1>
+            <p>Aspiring Systems and Network Administrator</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="profile-image">
+                    <img src="IMG-20240627-WA0167.jpg" alt="Chérubin Mandriva" width="250" height="250">
+                </div>
+                <div class="about-text">
+                    <p>Hello! I'm Chérubin, but you can call me Mandriva. I'm a passionate student in Computer Science, specializing in Systems and Network Administration. My journey in the world of IT began with a curiosity about how computers and networks function, and it has evolved into a deep fascination with the intricate world of system administration and network management.</p>
+                    <p>As a student, I'm constantly learning and exploring new technologies, with a particular focus on building robust, scalable, and secure IT infrastructures. I believe in the power of well-managed systems and networks to drive innovation and efficiency in organizations of all sizes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Academic Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Network Configuration Project" width="500" height="200">
+                    <div class="content">
+                        <h3>Campus Network Design</h3>
+                        <p>Designed and implemented a scalable network infrastructure for a simulated university campus, including VLANs, routing, and security measures.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Server Virtualization" width="500" height="200">
+                    <div class="content">
+                        <h3>Server Virtualization Lab</h3>
+                        <p>Set up a virtualization environment using VMware vSphere, demonstrating efficient resource allocation and management.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Linux Server Administration" width="500" height="200">
+                    <div class="content">
+                        <h3>Linux Server Administration</h3>
+                        <p>Configured and managed Linux servers for various services including web hosting, database management, and file sharing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Core Competencies</h2>
+            <div class="skills">
+                <div class="skill">
+                    <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Network Administration</h3>
+                    <p>Proficient in designing, implementing, and maintaining complex network infrastructures.</p>
+                </div>
+                <div class="skill">
+                    <div class="skill-icon"><i class="fab fa-linux"></i></div>
+                    <h3>Linux Systems</h3>
+                    <p>Experienced in managing and optimizing Linux-based servers and environments.</p>
+                </div>
+                <div class="skill">
+                    <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Cybersecurity</h3>
+                    <p>Skilled in implementing robust security measures to protect systems and data.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <p>I'm always eager to learn and collaborate on interesting projects in the field of systems and network administration. Whether you have questions, opportunities, or just want to connect, feel free to reach out!</p>
+            <p>Email: <a href="tshcherubin@gmail.com" class="__cf_email__" data-cfemail="fc9f94998e899e9592d2919d92988e958a9dbc88999f948f888998999288d2999889">tshcherubin@gmail.com</a></p>
+            <p>Phone: +243 975 130 019</p>
+            <!-- <div class="social-links">
+                <a href="https://linkedin.com/in/cherubinmandriva" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/cherubinmandriva" target="_blank"><i class="fab fa-github"></i></a>
+            </div> -->
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Chérubin "Mandriva". All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector("nav ul");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelectorAll("nav ul li a").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+    </script>
+</body>
+</html>
